@@ -19,17 +19,45 @@ function fetchAndDisplayGif(event) {
     event.preventDefault();
     
     // get the user's input text from the DOM
-    var searchQuery = ""; // TODO should be e.g. "dance"
+    var searchQuery = $("input[name~='tag']").val(); // TODO should be e.g. "dance" -DONE
+    console.log(searchQuery);
 
     // configure a few parameters to attach to our request
     var params = { 
         api_key: "dc6zaTOxFJmzC", 
-        tag : "" // TODO should be e.g. "jackson 5 dance"
+        tag : "jackson 5" + searchQuery // TODO should be e.g. "jackson 5 dance" -DONE
     };
+
+    // verification
+    // var $verify_p = $("<p>Prove you are not a robot by answering this riddle:<input name='verify' type='text'/> <strong>Jacksons are better than 1.</strong></p>");
+    // $("Prove you are not a robot by answering this riddle:<input type='text'/> <strong>Jacksons are better than 1./strong>").appendTo($verify_p);
+    // $("input[name~='tag']")
+    // .after($verify_p);
+    var $no_gif = $("#no_gif");
+
+    var $verify_p = $("#verify_p");
+
+    var verify_input = $("input[name~='verify']").val();
+
+    // $no_gif.empty();
+
+    if (verify_input == 5){
+
+    $no_gif
+    .attr("hidden",true);
+
+
+    var $loading = $("<p></p>");
+    
+    $loading.text();
+
+    $loading.text("Loading...");
+    $loading.appendTo("body");
+
     
     // make an ajax request for a random GIF
     $.ajax({
-        url: "", // TODO where should this request be sent?
+        url: "https://api.giphy.com/v1/gifs/random", // TODO where should this request be sent?
         data: params, // attach those extra parameters onto the request
         success: function(response) {
             // if the response comes back successfully, the code in here will execute.
@@ -39,8 +67,14 @@ function fetchAndDisplayGif(event) {
             console.log(response);
             
             // TODO
-            // 1. set the source attribute of our image to the image_url of the GIF
+            // 1. set the source attribute of our image to the image_url of the GIF -DONE
+            var image_url = response.data.image_url;
+            $("#gif")
+            .attr({"src": image_url,"hidden": false});
+            // .attr("hidden", "false");
+
             // 2. hide the feedback message and display the image
+            $loading.remove();
         },
         error: function() {
             // if something went wrong, the code in here will execute instead of the success function
@@ -50,7 +84,16 @@ function fetchAndDisplayGif(event) {
             setGifLoadedStatus(false);
         }
     });
-    
+
+    }
+    else{
+        $no_gif
+        .attr("hidden", false);
+        $("#gif").attr("hidden",true);
+        // .text("No gifs for you.");
+        // $verify_p.append($no_gif);
+        // $verify_p.append("<p>No gifs for you.</p>");
+    }
     // TODO
     // give the user a "Loading..." message while they wait
     

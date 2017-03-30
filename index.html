@@ -2,20 +2,51 @@
 <html>
 <head>
     <title>The AJAXson 5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="request-gif.js"></script>
 </head>
+<style>
+    body{
+        background-color:#EEEEEE;
+    }
+    #gif{
+        display: block;
+        margin: auto;
+    }
+</style>
 <body>
-    <h1>The AJAXson 5</h1>
+        <div class="jumbotron">
+            <h1>The AJAXson 5</h1>
 
-    <form id="form-gif-request" />
-        <label>What kind of Jackson 5 related gif do you want?</label>
-        <input name="tag" type="text"/>
-        <input type="submit" value="Get my Gif!" />
-    </form>
+            <form id="form-gif-request" class="well well-lg panel panel-default form-group" />
+                <p>
+                <label class="panel-body">What kind of Jackson 5 related gif do you want?</label>
+                <input name="tag" type="text" class="form-control"/>
+                </p>
+                <p id="verify_p">
+                    <label class="panel-body">Prove you are not a robot by answering this riddle:</label>
+                    <input name='verify' type='text' class="form-control"/> <strong class="panel-body">Jacksons are better than 1.</strong>
+                    <p>
+                        <label id="no_gif" hidden="true" class="alert alert-danger">No gif for you.</label>
+                    </p>
+                </p>
+                <input type="submit" value="Get my Gif!" class="btn-primary form-control" />
+            </form>
 
-    <img id="gif" src="" hidden="true"/>
-    <p id="feedback" hidden="true`"></p>
+            
+            <img id="gif" src="" hidden="true" class="media-object"/>
+            <p id="feedback" hidden="true`"></p>
+               
+        </div>
 
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>
